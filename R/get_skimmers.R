@@ -89,7 +89,9 @@ get_skimmers.numeric <- function(column) {
     p50 = ~ stats::quantile(., probs = .50, na.rm = TRUE, names = FALSE),
     p75 = ~ stats::quantile(., probs = .75, na.rm = TRUE, names = FALSE),
     p100 = ~ stats::quantile(., probs = 1, na.rm = TRUE, names = FALSE),
-    hist = ~ inline_hist(., 5)
+    tukey_n_outliers = ~ tukey_fence_n_outliers(., k = 3),
+    tuek_percent_outliers = ~ tukey_fence_percent_outliers(., k=3),
+    histogram = ~ inline_hist(., 5)
   )
 }
 

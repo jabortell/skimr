@@ -2,6 +2,9 @@
 % Please edit documentation in R/stats.R
 \name{stats}
 \alias{stats}
+\alias{tukey_fence}
+\alias{tukey_fence_n_outliers}
+\alias{tukey_fence_percent_outliers}
 \alias{n_missing}
 \alias{n_complete}
 \alias{complete_rate}
@@ -23,6 +26,12 @@
 \alias{list_max_length}
 \title{Summary statistic functions}
 \usage{
+tukey_fence(x, k = 3)
+
+tukey_fence_n_outliers(x, k = 3)
+
+tukey_fence_percent_outliers(x, k = 3)
+
 n_missing(x)
 
 n_complete(x)
@@ -64,6 +73,9 @@ list_max_length(x)
 \arguments{
 \item{x}{A vector}
 
+\item{k}{Tukey's k that adjusts the severity of the outlier. 1.5 removes
+mild outliers, 3 removes severe outliers.}
+
 \item{max_char}{In \code{top} = 3, max_levels = 4}
 
 \item{max_levels}{The maximum number of levels to be displayed.}
@@ -83,6 +95,12 @@ a given data type.
 }
 \section{Functions}{
 \itemize{
+\item \code{tukey_fence}: Remove outliers from a vector based on Tukey's Fence.
+
+\item \code{tukey_fence_n_outliers}: Calculate the number of outlying values.
+
+\item \code{tukey_fence_percent_outliers}: Calculate the percentage of values that are outliers.
+
 \item \code{n_missing}: Calculate the sum of \code{NA} and \code{NULL} (i.e. missing) values.
 
 \item \code{n_complete}: Calculate the sum of not \code{NA} and \code{NULL} (i.e. missing)

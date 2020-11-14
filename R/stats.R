@@ -16,6 +16,41 @@
 #' @name stats
 NULL
 
+# TODO: Would be very interesting to add a function to calculate the sample power of a feature.
+#   Power functions would be different for different classes, i.e. numerics and factors.
+
+#' @describeIn stats Remove outliers from a vector based on Tukey's Fence.
+#' @param k Tukey's k that adjusts the severity of the outlier. 1.5 removes
+#'  mild outliers, 3 removes severe outliers.
+#' @export
+tukey_fence <- function(x, k=3) {
+  fvn = stats::fivenum(x, na.rm = TRUE)
+  q1 = fvn[2]
+  q3 = fvn[4]
+
+  iqr = q3-q1
+  lower_limit = q1 - k*iqr
+  upper_limit = q3 + k*iqr
+
+  x[x >= lower_limit & x <= upper_limit]
+}
+
+#' @describeIn stats Calculate the number of outlying values.
+#' @param k Tukey's k that adjusts the severity of the outlier. 1.5 removes
+#'  mild outliers, 3 removes severe outliers.
+#' @export
+tukey_fence_n_outliers <- function(x, k=3) {
+  length(x) - length(tukey_fence(x, k))
+}
+
+#' @describeIn stats Calculate the percentage of values that are outliers.
+#' @param k Tukey's k that adjusts the severity of the outlier. 1.5 removes
+#'  mild outliers, 3 removes severe outliers.
+#' @export
+tukey_fence_percent_outliers <- function(x, k=3) {
+  1 - tukey_fence_n_outliers(x, k) / length(x)
+}
+
 #' @describeIn stats Calculate the sum of `NA` and `NULL` (i.e. missing) values.
 #' @export
 n_missing <- function(x) {
