@@ -6,7 +6,7 @@
 \alias{tukey_fence_n_outliers}
 \alias{tukey_fence_percent_outliers}
 \alias{iqr}
-\alias{range_num}
+\alias{range_numeric}
 \alias{range_logical}
 \alias{n_missing}
 \alias{n_complete}
@@ -38,7 +38,7 @@ tukey_fence_percent_outliers(x, k = 3)
 
 iqr(x)
 
-range_num(x)
+range_numeric(x)
 
 range_logical(x)
 
@@ -115,7 +115,7 @@ a given data type.
 
 \item \code{iqr}: Calculate the IQR
 
-\item \code{range_num}: Calculate the range between Max and Min
+\item \code{range_numeric}: Calculate the range between Max and Min
 
 \item \code{range_logical}: Calculate the range between total True and False values
 
