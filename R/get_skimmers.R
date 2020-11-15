@@ -97,10 +97,6 @@ get_skimmers.numeric <- function(column) {
   )
 }
 
-# TODO: Include distribution functions to factors.
-# For example, counting the occurences of the factors, what is the distribution
-# of their occurences? use skimr::sorted_count
-
 #' @describeIn get_skimmers Summary functions for factor columns:
 #'   [is.ordered()], [n_unique()] and [top_counts()].
 #' @export
@@ -109,7 +105,8 @@ get_skimmers.factor <- function(column) {
     skim_type = "factor",
     ordered = is.ordered,
     n_unique = n_unique,
-    top_counts = top_counts
+    top_counts = top_counts,
+    sorted_bar = ~ spark_bar(normalize01(sorted_count(.)))
   )
 }
 
