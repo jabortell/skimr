@@ -5,6 +5,9 @@
 \alias{tukey_fence}
 \alias{tukey_fence_n_outliers}
 \alias{tukey_fence_percent_outliers}
+\alias{iqr}
+\alias{range_num}
+\alias{range_logical}
 \alias{n_missing}
 \alias{n_complete}
 \alias{complete_rate}
@@ -16,6 +19,7 @@
 \alias{min_char}
 \alias{max_char}
 \alias{n_unique}
+\alias{percent_unique}
 \alias{ts_start}
 \alias{ts_end}
 \alias{inline_linegraph}
@@ -31,6 +35,12 @@ tukey_fence(x, k = 3)
 tukey_fence_n_outliers(x, k = 3)
 
 tukey_fence_percent_outliers(x, k = 3)
+
+iqr(x)
+
+range_num(x)
+
+range_logical(x)
 
 n_missing(x)
 
@@ -53,6 +63,8 @@ min_char(x)
 max_char(x)
 
 n_unique(x)
+
+percent_unique(x)
 
 ts_start(x)
 
@@ -101,6 +113,12 @@ a given data type.
 
 \item \code{tukey_fence_percent_outliers}: Calculate the percentage of values that are outliers.
 
+\item \code{iqr}: Calculate the IQR
+
+\item \code{range_num}: Calculate the range between Max and Min
+
+\item \code{range_logical}: Calculate the range between total True and False values
+
 \item \code{n_missing}: Calculate the sum of \code{NA} and \code{NULL} (i.e. missing) values.
 
 \item \code{n_complete}: Calculate the sum of not \code{NA} and \code{NULL} (i.e. missing)
@@ -133,6 +151,8 @@ character vector.
 character vector.
 
 \item \code{n_unique}: Calculate the number of unique elements but remove \code{NA}.
+
+\item \code{percent_unique}: Percentage of values that are unique.
 
 \item \code{ts_start}: Get the start for a time series without the frequency.
 

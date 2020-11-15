@@ -89,11 +89,17 @@ get_skimmers.numeric <- function(column) {
     p50 = ~ stats::quantile(., probs = .50, na.rm = TRUE, names = FALSE),
     p75 = ~ stats::quantile(., probs = .75, na.rm = TRUE, names = FALSE),
     p100 = ~ stats::quantile(., probs = 1, na.rm = TRUE, names = FALSE),
+    iqr = iqr,
+    range = range_numeric,
     tukey_n_outliers = ~ tukey_fence_n_outliers(., k = 3),
-    tuek_percent_outliers = ~ tukey_fence_percent_outliers(., k=3),
+    tukey_percent_outliers = ~ tukey_fence_percent_outliers(., k=3),
     histogram = ~ inline_hist(., 30)
   )
 }
+
+# TODO: Include distribution functions to factors.
+# For example, counting the occurences of the factors, what is the distribution
+# of their occurences? use skimr::sorted_count
 
 #' @describeIn get_skimmers Summary functions for factor columns:
 #'   [is.ordered()], [n_unique()] and [top_counts()].
@@ -118,6 +124,7 @@ get_skimmers.character <- function(column) {
     max = max_char,
     empty = n_empty,
     n_unique = n_unique,
+    percent_unique = percent_unique,
     whitespace = n_whitespace
   )
 }
@@ -129,7 +136,8 @@ get_skimmers.logical <- function(column) {
   sfl(
     skim_type = "logical",
     mean = ~ mean(., na.rm = TRUE),
-    count = top_counts
+    count = top_counts,
+    range = range_logical
   )
 }
 
@@ -151,6 +159,7 @@ get_skimmers.Date <- function(column) {
     min = ~ min(., na.rm = TRUE),
     max = ~ max(., na.rm = TRUE),
     median = ~ stats::median(., na.rm = TRUE),
+    range = range_numeric,
     n_unique = n_unique
   )
 }

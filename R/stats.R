@@ -51,6 +51,29 @@ tukey_fence_percent_outliers <- function(x, k=3) {
   1 - tukey_fence_n_outliers(x, k) / length(x)
 }
 
+#' @describeIn stats Calculate the IQR
+#' @export
+iqr <- function(x) {
+  x = x[!is.na(x)]
+  q3 = stats::quantile(x, probs = 0.75)
+  q1 = stats::quantile(x, probs = 0.25)
+  q3 - q1
+}
+
+#' @describeIn stats Calculate the range between Max and Min
+#' @export
+range_numeric <- function(x) {
+  x = x[!is.na(x)]
+  max(x) - min(x)
+}
+
+#' @describeIn stats Calculate the range between total True and False values
+#' @export
+range_logical <- function(x) {
+  x = x[!is.na(x)]
+  2 * sum(x) - length(x)
+}
+
 #' @describeIn stats Calculate the sum of `NA` and `NULL` (i.e. missing) values.
 #' @export
 n_missing <- function(x) {
@@ -217,6 +240,12 @@ n_unique <- function(x) {
   un <- x[!is.na(x)]
   un <- unique(un)
   length(un)
+}
+
+#' @describeIn stats Percentage of values that are unique.
+#' @export
+percent_unique <- function(x) {
+  length(n_unique(x)) / length(x)
 }
 
 #' @describeIn stats Get the start for a time series without the frequency.
