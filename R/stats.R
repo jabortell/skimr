@@ -54,7 +54,7 @@ tukey_fence_percent_outliers <- function(x, k=3) {
 #' @describeIn stats Calculate the IQR
 #' @export
 iqr <- function(x) {
-  x = x[!is.na(x)]
+  x <- na.omit(x)
   q3 = stats::quantile(x, probs = 0.75)
   q1 = stats::quantile(x, probs = 0.25)
   q3 - q1
@@ -63,14 +63,14 @@ iqr <- function(x) {
 #' @describeIn stats Calculate the range between Max and Min
 #' @export
 range_numeric <- function(x) {
-  x = x[!is.na(x)]
+  x <- na.omit(x)
   max(x) - min(x)
 }
 
 #' @describeIn stats Calculate the range between total True and False values
 #' @export
 range_logical <- function(x) {
-  x = x[!is.na(x)]
+  x <- na.omit(x)
   2 * sum(x) - length(x)
 }
 
@@ -314,7 +314,7 @@ braille <- function(x) {
 #' @describeIn stats Get the length of the shortest list in a vector of lists.
 #' @export
 list_lengths_min <- function(x) {
-  x <- x[!is.na(x)]
+  x <- na.omit(x)
   l <- lengths(x)
   if (length(l) > 0) {
     min(l)
@@ -326,7 +326,7 @@ list_lengths_min <- function(x) {
 #' @describeIn stats Get the median length of the lists.
 #' @export
 list_lengths_median <- function(x) {
-  x <- x[!is.na(x)]
+  x <- na.omit(x)
   l <- lengths(x)
   if (length(l) > 0) {
     stats::median(l)
@@ -338,7 +338,7 @@ list_lengths_median <- function(x) {
 #' @describeIn stats Get the maximum length of the lists.
 #' @export
 list_lengths_max <- function(x) {
-  x <- x[!is.na(x)]
+  x <- na.omit(x)
   l <- lengths(x)
   if (length(l) > 0) {
     max(l)
