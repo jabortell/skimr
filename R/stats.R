@@ -48,7 +48,7 @@ tukey_fence_n_outliers <- function(x, k=3) {
 #'  mild outliers, 3 removes severe outliers.
 #' @export
 tukey_fence_percent_outliers <- function(x, k=3) {
-  1 - tukey_fence_n_outliers(x, k) / length(x)
+  tukey_fence_n_outliers(x, k) / length(x)
 }
 
 #' @describeIn stats Calculate the IQR
